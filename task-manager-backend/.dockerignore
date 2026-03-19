@@ -1,0 +1,23 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# IDE files
+.idea
+*.iml
+.vscode
+
+# Maven
+target/
+
+# Environment files (sensitive!)
+.env
+
+# Documentation
+*.md
+README*
+
+# OS files
+.DS_Store
+Thumbs.db

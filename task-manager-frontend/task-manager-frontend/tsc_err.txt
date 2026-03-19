@@ -1,0 +1,483 @@
+src/@crema/components/AppLayout/components/AppVerticalNav/index.tsx(70,7): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: PolymorphicComponentProps<"web", FastOmit<Omit<Omit<ComponentProps, "items"> & { items?: ItemType<MenuItemType>[] | undefined; }, "ref"> & { ref?: ((instance: MenuRef | null) => void) | ... 2 more ... | undefined; }, never>, void, void, {}, {}>): Element', gave the following error.
+    Type '({ children: any[] | undefined; type: string; key: string; icon: false | "" | 0 | Element | null | undefined; label: Element; } | { key: string; icon: false | "" | 0 | Element | null | undefined; label: Element; exact: boolean | undefined; })[]' is not assignable to type 'ItemType<MenuItemType>[]'.
+      Type '{ children: any[] | undefined; type: string; key: string; icon: false | "" | 0 | Element | null | undefined; label: Element; } | { key: string; icon: false | "" | 0 | Element | null | undefined; label: Element; exact: boolean | undefined; }' is not assignable to type 'ItemType<MenuItemType>'.
+        Type '{ children: any[] | undefined; type: string; key: string; icon: false | "" | 0 | JSX.Element | null | undefined; label: JSX.Element; }' is not assignable to type 'ItemType<MenuItemType>'.
+          Type '{ children: any[] | undefined; type: string; key: string; icon: false | "" | 0 | JSX.Element | null | undefined; label: JSX.Element; }' is not assignable to type 'MenuDividerType | MenuItemType | SubMenuType<MenuItemType> | MenuItemGroupType<MenuItemType>'.
+            Type '{ children: any[] | undefined; type: string; key: string; icon: false | "" | 0 | JSX.Element | null | undefined; label: JSX.Element; }' is not assignable to type 'SubMenuType<MenuItemType>'.
+              Types of property 'children' are incompatible.
+                Type 'any[] | undefined' is not assignable to type 'ItemType<MenuItemType>[]'.
+                  Type 'undefined' is not assignable to type 'ItemType<MenuItemType>[]'.
+src/@crema/components/AppNavLink/index.tsx(10,46): error TS2345: Argument of type '({ activeClassName, className, ...rest }: AppNavLinkProps, ref: Ref<HTMLAnchorElement>) => Element' is not assignable to parameter of type 'ForwardRefRenderFunction<HTMLAnchorElement, Omit<AppNavLinkProps, "ref">>'.
+  Types of parameters '__0' and 'props' are incompatible.
+    Type 'Omit<AppNavLinkProps, "ref">' is missing the following properties from type 'AppNavLinkProps': activeClassName, className
+src/@crema/components/AppsContainer/index.tsx(2,1): error TS6133: 'AppInfoView' is declared but its value is never read.
+src/@crema/components/InviteMemberModal/InviteMemberModal.tsx(17,1): error TS6133: 'IntlMessages' is declared but its value is never read.
+src/@crema/components/InviteMemberModal/InviteMemberModal.tsx(64,13): error TS6133: 'response' is declared but its value is never read.
+src/@crema/components/PermissionGate/index.tsx(2,35): error TS2307: Cannot find module '@crema/hooks/usePermissions' or its corresponding type declarations.
+src/@crema/context/AppContextProvider/LocaleContextProvider.tsx(47,40): error TS2345: Argument of type 'string' is not assignable to parameter of type 'never'.
+src/@crema/context/AppContextProvider/LocaleContextProvider.tsx(55,41): error TS2345: Argument of type 'string' is not assignable to parameter of type 'never'.
+src/@crema/context/AppContextProvider/UserContextProvider/index.ts(3,21): error TS2459: Module '"./UserContext"' declares 'UserPreferences' locally, but it is not exported.
+src/@crema/context/AppContextProvider/UserContextProvider/UserContext.tsx(4,10): error TS6133: 'UserProfile' is declared but its value is never read.
+src/@crema/context/AppContextProvider/UserContextProvider/UserContext.tsx(185,13): error TS6133: 'response' is declared but its value is never read.
+src/@crema/context/AppContextProvider/UserContextProvider/UserContext.tsx(257,13): error TS6133: 'response' is declared but its value is never read.
+src/@crema/context/AppContextProvider/UserContextProvider/UserContext.tsx(270,26): error TS6133: 'permission' is declared but its value is never read.
+src/@crema/context/AppContextProvider/UserContextProvider/useUserHooks.ts(3,1): error TS6133: 'UserContextType' is declared but its value is never read.
+src/@crema/core/AppAuthProvider/index.tsx(14,7): error TS2322: Type '{ children: ReactNode; fetchStart: () => void; fetchError: (error: string) => void; fetchSuccess: () => void; }' is not assignable to type 'IntrinsicAttributes & JWTAuthAuthProviderProps'.
+  Property 'fetchStart' does not exist on type 'IntrinsicAttributes & JWTAuthAuthProviderProps'.
+src/@crema/core/AppRoutes/routeConfig.tsx(3,3): error TS6133: 'MdOutlineAnalytics' is declared but its value is never read.
+src/@crema/core/AppRoutes/routeConfig.tsx(7,3): error TS6133: 'MdAssessment' is declared but its value is never read.
+src/@crema/core/AppRoutes/routeConfig.tsx(10,1): error TS6133: 'RoutePermittedRole' is declared but its value is never read.
+src/@crema/helpers/InvitationHelper.ts(18,48): error TS6133: 'userData' is declared but its value is never read.
+src/@crema/helpers/memberUtils.ts(17,5): error TS2322: Type 'string | undefined' is not assignable to type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+src/@crema/hooks/useWebSocket.ts(3,1): error TS6133: 'CardObjType' is declared but its value is never read.
+src/@crema/mockapi/apis/notifications/index.ts(4,31): error TS6133: 'Notification' is declared but its value is never read.
+src/@crema/mockapi/apis/reports/index.ts(21,36): error TS2554: Expected 1 arguments, but got 0.
+src/@crema/mockapi/apis/reports/index.ts(110,9): error TS7034: Variable 'recentActivities' implicitly has type 'any[]' in some locations where its type cannot be determined.
+src/@crema/mockapi/apis/reports/index.ts(128,9): error TS7034: Variable 'upcomingDeadlines' implicitly has type 'any[]' in some locations where its type cannot be determined.
+src/@crema/mockapi/apis/reports/index.ts(132,18): error TS2339: Property 'dueDate' does not exist on type 'CardObjType'.
+src/@crema/mockapi/apis/reports/index.ts(137,36): error TS2339: Property 'dueDate' does not exist on type 'CardObjType'.
+src/@crema/mockapi/apis/reports/index.ts(138,28): error TS2339: Property 'priority' does not exist on type 'CardObjType'.
+src/@crema/mockapi/apis/reports/index.ts(183,23): error TS7005: Variable 'recentActivities' implicitly has an 'any[]' type.
+src/@crema/mockapi/apis/reports/index.ts(184,24): error TS7005: Variable 'upcomingDeadlines' implicitly has an 'any[]' type.
+src/@crema/mockapi/apis/team/index.ts(10,14): error TS2322: Type '{ role: TeamRole; joinedAt: string; lastActive: string; boards: number; tasks: number; id: number; name: string; email?: string | undefined; avatar?: string | undefined; image?: string | undefined; }[]' is not assignable to type 'TeamMember[]'.
+  Type '{ role: TeamRole; joinedAt: string; lastActive: string; boards: number; tasks: number; id: number; name: string; email?: string; avatar?: string; image?: string; }' is not assignable to type 'TeamMember'.
+    Types of property 'email' are incompatible.
+      Type 'string | undefined' is not assignable to type 'string'.
+        Type 'undefined' is not assignable to type 'string'.
+src/@crema/services/AuthService.ts(9,3): error TS6133: 'RefreshTokenRequest' is declared but its value is never read.
+src/@crema/services/AuthService.ts(23,11): error TS2300: Duplicate identifier 'refreshToken'.
+src/@crema/services/AuthService.ts(165,16): error TS2300: Duplicate identifier 'refreshToken'.
+src/@crema/services/AuthService.ts(259,20): error TS2349: This expression is not callable.
+  Type 'String' has no call signatures.
+src/@crema/services/BoardMemberService.ts(189,34): error TS6133: 'query' is declared but its value is never read.
+src/@crema/services/NotificationService.tsx(93,26): error TS2339: Property 'close' does not exist on type 'NoticeMethods & BaseMethods'.
+src/@crema/services/NotificationService.tsx(290,18): error TS2339: Property 'close' does not exist on type 'NoticeMethods & BaseMethods'.
+src/@crema/services/UnifiedApiService.ts(168,30): error TS2347: Untyped function calls may not accept type arguments.
+src/@crema/services/UnifiedApiService.ts(184,30): error TS2347: Untyped function calls may not accept type arguments.
+src/@crema/services/UnifiedApiService.ts(200,30): error TS2347: Untyped function calls may not accept type arguments.
+src/@crema/services/UnifiedApiService.ts(216,30): error TS2347: Untyped function calls may not accept type arguments.
+src/@crema/services/UnifiedApiService.ts(232,30): error TS2347: Untyped function calls may not accept type arguments.
+src/@crema/store/useAppStore.ts(2,24): error TS2307: Cannot find module 'zustand' or its corresponding type declarations.
+src/@crema/store/useAppStore.ts(3,35): error TS2307: Cannot find module 'zustand/middleware' or its corresponding type declarations.
+src/@crema/store/useAppStore.ts(4,23): error TS2307: Cannot find module 'zustand/middleware/immer' or its corresponding type declarations.
+src/@crema/store/useAppStore.ts(84,14): error TS7006: Parameter 'set' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(84,19): error TS7006: Parameter '_get' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(96,21): error TS7006: Parameter 'boards' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(96,37): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(100,20): error TS7006: Parameter 'board' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(100,35): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(104,23): error TS7006: Parameter 'boardId' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(104,32): error TS7006: Parameter 'updates' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(104,49): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(105,53): error TS7006: Parameter 'b' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(114,23): error TS7006: Parameter 'boardId' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(114,40): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(115,46): error TS7006: Parameter 'b' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(123,27): error TS7006: Parameter 'board' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(123,42): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(128,19): error TS7006: Parameter 'boardId' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(128,28): error TS7006: Parameter 'listId' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(128,36): error TS7006: Parameter 'card' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(128,50): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(129,43): error TS7006: Parameter 'b' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(131,42): error TS7006: Parameter 'l' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(137,55): error TS7006: Parameter 'l' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(144,22): error TS7006: Parameter 'boardId' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(144,31): error TS7006: Parameter 'cardId' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(144,39): error TS7006: Parameter 'updates' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(144,56): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(145,43): error TS7006: Parameter 'b' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(147,32): error TS7006: Parameter 'list' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(148,54): error TS7006: Parameter 'c' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(155,45): error TS7006: Parameter 'list' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(156,54): error TS7006: Parameter 'c' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(164,22): error TS7006: Parameter 'boardId' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(164,31): error TS7006: Parameter 'cardId' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(164,47): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(165,43): error TS7006: Parameter 'b' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(167,32): error TS7006: Parameter 'list' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(168,46): error TS7006: Parameter 'c' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(172,45): error TS7006: Parameter 'list' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(173,46): error TS7006: Parameter 'c' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(178,20): error TS7006: Parameter 'boardId' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(178,29): error TS7006: Parameter 'cardId' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(178,37): error TS7006: Parameter 'fromListId' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(178,49): error TS7006: Parameter 'toListId' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(178,59): error TS7006: Parameter 'position' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(178,77): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(179,43): error TS7006: Parameter 'b' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(181,46): error TS7006: Parameter 'l' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(182,44): error TS7006: Parameter 'l' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(185,48): error TS7006: Parameter 'c' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(187,56): error TS7006: Parameter 'c' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(195,59): error TS7006: Parameter 'l' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(196,57): error TS7006: Parameter 'l' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(199,48): error TS7006: Parameter 'c' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(201,56): error TS7006: Parameter 'c' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(209,19): error TS7006: Parameter 'boardId' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(209,28): error TS7006: Parameter 'list' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(209,42): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(210,43): error TS7006: Parameter 'b' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(219,22): error TS7006: Parameter 'boardId' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(219,31): error TS7006: Parameter 'listId' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(219,39): error TS7006: Parameter 'updates' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(219,56): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(220,43): error TS7006: Parameter 'b' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(222,52): error TS7006: Parameter 'l' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(228,65): error TS7006: Parameter 'l' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(235,22): error TS7006: Parameter 'boardId' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(235,31): error TS7006: Parameter 'listId' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(235,47): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(236,43): error TS7006: Parameter 'b' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(238,44): error TS7006: Parameter 'l' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(241,70): error TS7006: Parameter 'l' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(246,26): error TS7006: Parameter 'members' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(246,43): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(250,25): error TS7006: Parameter 'member' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(250,41): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(254,28): error TS7006: Parameter 'memberId' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(254,38): error TS7006: Parameter 'updates' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(254,55): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(255,59): error TS7006: Parameter 'm' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(261,28): error TS7006: Parameter 'memberId' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(261,46): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(262,56): error TS7006: Parameter 'm' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(265,94): error TS7006: Parameter 'm' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(269,27): error TS7006: Parameter 'boardId' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(269,36): error TS7006: Parameter 'members' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(269,53): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(273,26): error TS7006: Parameter 'boardId' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(273,35): error TS7006: Parameter 'member' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(273,51): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(280,29): error TS7006: Parameter 'boardId' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(280,38): error TS7006: Parameter 'memberId' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(280,56): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(282,78): error TS7006: Parameter 'm' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(287,28): error TS7006: Parameter 'notifications' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(287,51): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(289,52): error TS7006: Parameter 'n' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(292,27): error TS7006: Parameter 'notification' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(292,49): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(299,34): error TS7006: Parameter 'notificationId' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(299,58): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(300,57): error TS7006: Parameter 'n' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(307,48): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(308,39): error TS7006: Parameter 'n' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(312,30): error TS7006: Parameter 'notificationId' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(312,54): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(313,57): error TS7006: Parameter 'n' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(317,60): error TS7006: Parameter 'n' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(320,43): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(326,22): error TS7006: Parameter 'loading' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(326,39): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(330,20): error TS7006: Parameter 'error' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(330,35): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(334,32): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(340,22): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(356,45): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(357,51): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(358,50): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(360,37): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(363,52): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(364,50): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(365,49): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useAppStore.ts(366,47): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(6,24): error TS2307: Cannot find module 'zustand' or its corresponding type declarations.
+src/@crema/store/useUnifiedStore.ts(7,35): error TS2307: Cannot find module 'zustand/middleware' or its corresponding type declarations.
+src/@crema/store/useUnifiedStore.ts(8,23): error TS2307: Cannot find module 'zustand/middleware/immer' or its corresponding type declarations.
+src/@crema/store/useUnifiedStore.ts(228,14): error TS7006: Parameter 'set' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(234,23): error TS7006: Parameter 'user' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(234,29): error TS7006: Parameter 'token' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(234,44): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(240,31): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(246,26): error TS7006: Parameter 'loading' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(246,43): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(250,24): error TS7006: Parameter 'error' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(250,39): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(258,21): error TS7006: Parameter 'boards' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(258,37): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(262,20): error TS7006: Parameter 'board' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(262,35): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(266,23): error TS7006: Parameter 'boardId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(266,32): error TS7006: Parameter 'updates' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(266,49): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(267,54): error TS7006: Parameter 'b' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(276,23): error TS7006: Parameter 'boardId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(276,40): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(277,58): error TS7006: Parameter 'b' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(283,27): error TS7006: Parameter 'board' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(283,42): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(287,28): error TS7006: Parameter 'loading' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(287,45): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(291,26): error TS7006: Parameter 'error' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(291,41): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(298,19): error TS7006: Parameter 'boardId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(298,28): error TS7006: Parameter 'listId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(298,36): error TS7006: Parameter 'card' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(303,22): error TS7006: Parameter 'boardId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(303,31): error TS7006: Parameter 'cardId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(303,39): error TS7006: Parameter 'updates' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(308,22): error TS7006: Parameter 'boardId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(308,31): error TS7006: Parameter 'cardId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(313,20): error TS7006: Parameter '_boardId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(313,30): error TS7006: Parameter 'cardId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(313,38): error TS7006: Parameter 'fromListId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(313,50): error TS7006: Parameter 'toListId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(313,60): error TS7006: Parameter 'position' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(321,19): error TS7006: Parameter 'boardId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(321,28): error TS7006: Parameter 'list' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(326,22): error TS7006: Parameter 'boardId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(326,31): error TS7006: Parameter 'listId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(326,39): error TS7006: Parameter 'updates' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(331,22): error TS7006: Parameter 'boardId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(331,31): error TS7006: Parameter 'listId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(339,26): error TS7006: Parameter 'members' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(339,43): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(343,25): error TS7006: Parameter 'member' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(343,41): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(347,28): error TS7006: Parameter 'memberId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(347,38): error TS7006: Parameter 'updates' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(347,55): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(348,54): error TS7006: Parameter 'm' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(354,28): error TS7006: Parameter 'memberId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(354,46): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(355,58): error TS7006: Parameter 'm' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(358,27): error TS7006: Parameter 'boardId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(358,36): error TS7006: Parameter 'members' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(358,53): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(362,26): error TS7006: Parameter 'boardId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(362,35): error TS7006: Parameter 'member' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(362,51): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(369,29): error TS7006: Parameter 'boardId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(369,38): error TS7006: Parameter 'memberId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(369,48): error TS7006: Parameter 'updates' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(369,65): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(372,45): error TS7006: Parameter 'm' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(379,29): error TS7006: Parameter 'boardId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(379,38): error TS7006: Parameter 'memberId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(379,56): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(382,63): error TS7006: Parameter 'm' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(386,26): error TS7006: Parameter 'loading' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(386,43): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(390,24): error TS7006: Parameter 'error' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(390,39): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(397,28): error TS7006: Parameter 'notifications' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(397,51): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(399,66): error TS7006: Parameter 'n' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(402,27): error TS7006: Parameter 'notification' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(402,49): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(409,34): error TS7006: Parameter 'notificationId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(409,58): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(410,63): error TS7006: Parameter 'n' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(417,38): error TS7006: Parameter 'userId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(417,54): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(418,45): error TS7006: Parameter 'notification' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(426,30): error TS7006: Parameter 'notificationId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(426,54): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(427,63): error TS7006: Parameter 'n' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(431,72): error TS7006: Parameter 'n' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(434,43): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(439,35): error TS7006: Parameter 'loading' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(439,52): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(443,33): error TS7006: Parameter 'error' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(443,48): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(450,22): error TS7006: Parameter 'loading' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(450,39): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(454,20): error TS7006: Parameter 'error' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(454,35): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(458,32): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(462,20): error TS7006: Parameter 'theme' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(462,35): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(466,23): error TS7006: Parameter 'language' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(466,41): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(473,33): error TS7006: Parameter 'connected' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(473,52): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(477,26): error TS7006: Parameter 'boardId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(477,35): error TS7006: Parameter 'users' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(477,50): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(481,25): error TS7006: Parameter 'boardId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(481,34): error TS7006: Parameter 'user' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(481,48): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(485,68): error TS7006: Parameter 'u' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(491,28): error TS7006: Parameter 'boardId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(491,37): error TS7006: Parameter 'userId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(491,53): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(494,65): error TS7006: Parameter 'u' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(498,26): error TS7006: Parameter 'cardId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(498,34): error TS7006: Parameter 'users' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(498,49): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(502,25): error TS7006: Parameter 'cardId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(502,33): error TS7006: Parameter 'user' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(502,47): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(506,67): error TS7006: Parameter 'u' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(512,28): error TS7006: Parameter 'cardId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(512,36): error TS7006: Parameter 'userId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(512,52): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(515,64): error TS7006: Parameter 'u' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(519,29): error TS7006: Parameter 'userId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(519,37): error TS7006: Parameter 'position' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(519,55): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(523,32): error TS7006: Parameter 'userId' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(523,48): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(529,22): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(552,47): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(553,49): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(554,47): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(555,56): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(556,45): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(557,52): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(563,54): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(570,55): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(580,54): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(587,54): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(593,54): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(606,62): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(617,52): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/store/useUnifiedStore.ts(625,59): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/@crema/utils/MigrationUtils.ts(69,16): error TS2367: This comparison appears to be unintentional because the types 'TeamRole' and '"admin"' have no overlap.
+src/@crema/utils/MigrationUtils.ts(69,51): error TS2367: This comparison appears to be unintentional because the types 'TeamRole' and '"owner"' have no overlap.
+src/@crema/utils/MigrationUtils.ts(70,18): error TS2367: This comparison appears to be unintentional because the types 'TeamRole' and '"owner"' have no overlap.
+src/@crema/utils/MigrationUtils.ts(71,25): error TS2367: This comparison appears to be unintentional because the types 'TeamRole' and '"admin"' have no overlap.
+src/@crema/utils/MigrationUtils.ts(71,60): error TS2367: This comparison appears to be unintentional because the types 'TeamRole' and '"owner"' have no overlap.
+src/modules/account/MyProfile/index.tsx(3,1): error TS6192: All imports in import declaration are unused.
+src/modules/account/MyProfile/index.tsx(14,1): error TS6133: 'Information' is declared but its value is never read.
+src/modules/account/MyProfile/index.tsx(16,1): error TS6133: 'SocialLink' is declared but its value is never read.
+src/modules/apps/Automation/AutomationContent/index.tsx(2,16): error TS6133: 'Switch' is declared but its value is never read.
+src/modules/apps/Automation/AutomationContent/index.tsx(2,24): error TS6133: 'Tag' is declared but its value is never read.
+src/modules/apps/Automation/AutomationSidebar/index.tsx(1,1): error TS6133: 'React' is declared but its value is never read.
+src/modules/apps/Notifications/NotificationContent/index.tsx(1,17): error TS6133: 'useEffect' is declared but its value is never read.
+src/modules/apps/Notifications/NotificationContent/index.tsx(1,28): error TS6133: 'useState' is declared but its value is never read.
+src/modules/apps/Notifications/NotificationContent/index.tsx(14,1): error TS6133: 'Notification' is declared but its value is never read.
+src/modules/apps/Notifications/NotificationSidebar/index.tsx(1,17): error TS6133: 'useState' is declared but its value is never read.
+src/modules/apps/Notifications/NotificationSidebar/index.tsx(1,27): error TS6133: 'useEffect' is declared but its value is never read.
+src/modules/apps/Notifications/NotificationSidebar/index.tsx(7,1): error TS6133: 'Notification' is declared but its value is never read.
+src/modules/apps/Reports/RecentActivities.tsx(5,1): error TS6133: 'rgba' is declared but its value is never read.
+src/modules/apps/Reports/TeamProductivityChart.tsx(77,24): error TS6133: 'entry' is declared but its value is never read.
+src/modules/apps/Reports/UpcomingDeadlines.tsx(5,1): error TS6133: 'rgba' is declared but its value is never read.
+src/modules/apps/ScrumBoard/BoardDetail/BoardDetailView.tsx(56,17): error TS2345: Argument of type '(currentBoard: any) => any' is not assignable to parameter of type 'BoardObjType'.
+src/modules/apps/ScrumBoard/BoardDetail/BoardDetailView.tsx(56,18): error TS7006: Parameter 'currentBoard' implicitly has an 'any' type.
+src/modules/apps/ScrumBoard/BoardDetail/BoardDetailView.tsx(59,42): error TS7006: Parameter 'lane' implicitly has an 'any' type.
+src/modules/apps/ScrumBoard/BoardDetail/BoardDetailView.tsx(60,42): error TS18048: 'message.data' is possibly 'undefined'.
+src/modules/apps/ScrumBoard/BoardDetail/BoardDetailView.tsx(60,42): error TS18048: 'message.data.laneId' is possibly 'undefined'.
+src/modules/apps/ScrumBoard/BoardDetail/BoardDetailView.tsx(74,14): error TS7006: Parameter 'l' implicitly has an 'any' type.
+src/modules/apps/ScrumBoard/BoardDetail/BoardDetailView.tsx(74,40): error TS18048: 'message.data' is possibly 'undefined'.
+src/modules/apps/ScrumBoard/BoardDetail/BoardDetailView.tsx(74,40): error TS18048: 'message.data.laneId' is possibly 'undefined'.
+src/modules/apps/ScrumBoard/BoardDetail/BoardDetailView.tsx(77,41): error TS18048: 'message.data' is possibly 'undefined'.
+src/modules/apps/ScrumBoard/BoardDetail/BoardDetailView.tsx(87,15): error TS2345: Argument of type '(currentBoard: any) => any' is not assignable to parameter of type 'BoardObjType'.
+src/modules/apps/ScrumBoard/BoardDetail/BoardDetailView.tsx(87,16): error TS7006: Parameter 'currentBoard' implicitly has an 'any' type.
+src/modules/apps/ScrumBoard/BoardDetail/BoardDetailView.tsx(89,38): error TS7006: Parameter 'lane' implicitly has an 'any' type.
+src/modules/apps/ScrumBoard/BoardDetail/BoardDetailView.tsx(92,14): error TS7006: Parameter 'card' implicitly has an 'any' type.
+src/modules/apps/ScrumBoard/BoardDetail/BoardDetailView.tsx(101,17): error TS2345: Argument of type '(currentBoard: any) => any' is not assignable to parameter of type 'BoardObjType'.
+src/modules/apps/ScrumBoard/BoardDetail/BoardDetailView.tsx(101,18): error TS7006: Parameter 'currentBoard' implicitly has an 'any' type.
+src/modules/apps/ScrumBoard/BoardDetail/BoardDetailView.tsx(103,40): error TS7006: Parameter 'lane' implicitly has an 'any' type.
+src/modules/apps/ScrumBoard/BoardDetail/BoardDetailView.tsx(105,36): error TS7006: Parameter 'c' implicitly has an 'any' type.
+src/modules/apps/ScrumBoard/BoardDetail/BoardDetailView.tsx(117,17): error TS2345: Argument of type '(currentBoard: any) => any' is not assignable to parameter of type 'BoardObjType'.
+src/modules/apps/ScrumBoard/BoardDetail/BoardDetailView.tsx(117,18): error TS7006: Parameter 'currentBoard' implicitly has an 'any' type.
+src/modules/apps/ScrumBoard/BoardDetail/BoardDetailView.tsx(120,42): error TS7006: Parameter 'lane' implicitly has an 'any' type.
+src/modules/apps/ScrumBoard/BoardDetail/BoardDetailView.tsx(126,22): error TS7006: Parameter 'c' implicitly has an 'any' type.
+src/modules/apps/ScrumBoard/BoardDetail/BoardDetailView.tsx(143,14): error TS7006: Parameter 'l' implicitly has an 'any' type.
+src/modules/apps/ScrumBoard/BoardDetail/BoardDetailView.tsx(146,14): error TS7006: Parameter 'l' implicitly has an 'any' type.
+src/modules/apps/ScrumBoard/BoardDetail/BoardDetailView.tsx(150,15): error TS18048: 'message.data' is possibly 'undefined'.
+src/modules/apps/ScrumBoard/BoardDetail/BoardDetailView.tsx(385,15): error TS2345: Argument of type '(currentBoard: any) => any' is not assignable to parameter of type 'BoardObjType'.
+src/modules/apps/ScrumBoard/BoardDetail/BoardDetailView.tsx(385,16): error TS7006: Parameter 'currentBoard' implicitly has an 'any' type.
+src/modules/apps/ScrumBoard/BoardDetail/BoardDetailView.tsx(387,46): error TS7006: Parameter 'ln' implicitly has an 'any' type.
+src/modules/apps/ScrumBoard/BoardDetail/List/AddCard/index.tsx(7,10): error TS6133: 'postDataApi' is declared but its value is never read.
+src/modules/apps/ScrumBoard/BoardDetail/List/AddCard/index.tsx(131,9): error TS2322: Type '{ board: BoardObjType; list: CardListObjType | null; checkedList: CheckedListObjType[]; handleCancel: () => void; setCheckedList: Dispatch<...>; ... 12 more ...; refreshTrigger: number | undefined; }' is not assignable to type 'IntrinsicAttributes & AddCardFormProps'.
+  Property 'checkedList' does not exist on type 'IntrinsicAttributes & AddCardFormProps'.
+src/modules/apps/ScrumBoard/BoardDetail/List/index.tsx(69,54): error TS2322: Type '{ onClickAddCard: ((listId: number) => void) | undefined; list: any; }' is not assignable to type 'IntrinsicAttributes & AddCardButtonProps'.
+  Property 'list' does not exist on type 'IntrinsicAttributes & AddCardButtonProps'.
+src/modules/apps/Team/index.tsx(7,1): error TS6133: 'IntlMessages' is declared but its value is never read.
+src/modules/apps/Team/RolesPermissionsTab.tsx(2,50): error TS6133: 'Divider' is declared but its value is never read.
+src/modules/apps/Team/RolesPermissionsTab.tsx(11,1): error TS6133: 'IntlMessages' is declared but its value is never read.
+src/modules/apps/Team/TeamContent/index.tsx(1,8): error TS6133: 'React' is declared but its value is never read.
+src/modules/apps/Team/TeamContent/index.tsx(4,3): error TS6133: 'PlusOutlined' is declared but its value is never read.
+src/modules/apps/Team/TeamContent/index.tsx(25,10): error TS6133: 'loading' is declared but its value is never read.
+src/modules/apps/Team/TeamContent/MemberCard.tsx(35,10): error TS6133: 'loading' is declared but its value is never read.
+src/modules/apps/Team/TeamContent/MemberCard.tsx(35,19): error TS6133: 'setLoading' is declared but its value is never read.
+src/modules/apps/Team/TeamMembersTab.tsx(9,3): error TS6133: 'Modal' is declared but its value is never read.
+src/modules/apps/Team/TeamMembersTab.tsx(27,1): error TS6133: 'IntlMessages' is declared but its value is never read.
+src/modules/apps/Team/TeamMembersTab.tsx(28,1): error TS6133: 'AppScrollbar' is declared but its value is never read.
+src/modules/apps/Team/TeamMembersTab.tsx(45,10): error TS6133: 'allTeamMembers' is declared but its value is never read.
+src/modules/apps/Team/TeamMembersTab.tsx(59,25): error TS2345: Argument of type 'TeamMember[]' is not assignable to parameter of type 'SetStateAction<TeamMember[]>'.
+  Type 'import("D:/DATN/task-manager-frontend/task-manager-frontend/src/@crema/services/BoardMemberService").TeamMember[]' is not assignable to type 'import("D:/DATN/task-manager-frontend/task-manager-frontend/src/@crema/services/PermissionService").TeamMember[]'.
+    Type 'import("D:/DATN/task-manager-frontend/task-manager-frontend/src/@crema/services/BoardMemberService").TeamMember' is not assignable to type 'import("D:/DATN/task-manager-frontend/task-manager-frontend/src/@crema/services/PermissionService").TeamMember'.
+      Types of property 'avatar' are incompatible.
+        Type 'string | undefined' is not assignable to type 'string'.
+          Type 'undefined' is not assignable to type 'string'.
+src/modules/apps/Team/TeamMembersTab.tsx(64,25): error TS2345: Argument of type 'BoardMember[]' is not assignable to parameter of type 'SetStateAction<BoardMember[]>'.
+  Type 'import("D:/DATN/task-manager-frontend/task-manager-frontend/src/@crema/services/BoardMemberService").BoardMember[]' is not assignable to type 'import("D:/DATN/task-manager-frontend/task-manager-frontend/src/@crema/services/PermissionService").BoardMember[]'.
+    Type 'import("D:/DATN/task-manager-frontend/task-manager-frontend/src/@crema/services/BoardMemberService").BoardMember' is not assignable to type 'import("D:/DATN/task-manager-frontend/task-manager-frontend/src/@crema/services/PermissionService").BoardMember'.
+      Types of property 'role' are incompatible.
+        Type '"OWNER" | "MEMBER"' is not assignable to type 'TeamRole'.
+          Type '"OWNER"' is not assignable to type 'TeamRole'.
+src/modules/apps/Team/TeamMembersTab.tsx(67,20): error TS2345: Argument of type '{ id: number; name: string; email: string; avatar?: string | undefined; lastActive?: string | undefined; boards?: number | undefined; tasks?: number | undefined; }[]' is not assignable to parameter of type 'SetStateAction<TeamMember[]>'.
+  Type '{ id: number; name: string; email: string; avatar?: string | undefined; lastActive?: string | undefined; boards?: number | undefined; tasks?: number | undefined; }[]' is not assignable to type 'TeamMember[]'.
+    Type '{ id: number; name: string; email: string; avatar?: string | undefined; lastActive?: string | undefined; boards?: number | undefined; tasks?: number | undefined; }' is missing the following properties from type 'TeamMember': role, joinedAt
+src/modules/apps/Team/TeamMembersTab.tsx(70,20): error TS2345: Argument of type 'TeamMember[]' is not assignable to parameter of type 'SetStateAction<TeamMember[]>'.
+  Type 'import("D:/DATN/task-manager-frontend/task-manager-frontend/src/@crema/services/BoardMemberService").TeamMember[]' is not assignable to type 'import("D:/DATN/task-manager-frontend/task-manager-frontend/src/@crema/services/PermissionService").TeamMember[]'.
+    Type 'import("D:/DATN/task-manager-frontend/task-manager-frontend/src/@crema/services/BoardMemberService").TeamMember' is not assignable to type 'import("D:/DATN/task-manager-frontend/task-manager-frontend/src/@crema/services/PermissionService").TeamMember'.
+      Types of property 'avatar' are incompatible.
+        Type 'string | undefined' is not assignable to type 'string'.
+          Type 'undefined' is not assignable to type 'string'.
+src/modules/apps/Team/TeamMembersTab.tsx(89,20): error TS2345: Argument of type 'TeamMember[]' is not assignable to parameter of type 'SetStateAction<TeamMember[]>'.
+  Type 'import("D:/DATN/task-manager-frontend/task-manager-frontend/src/@crema/services/BoardMemberService").TeamMember[]' is not assignable to type 'import("D:/DATN/task-manager-frontend/task-manager-frontend/src/@crema/services/PermissionService").TeamMember[]'.
+    Type 'import("D:/DATN/task-manager-frontend/task-manager-frontend/src/@crema/services/BoardMemberService").TeamMember' is not assignable to type 'import("D:/DATN/task-manager-frontend/task-manager-frontend/src/@crema/services/PermissionService").TeamMember'.
+      Types of property 'avatar' are incompatible.
+        Type 'string | undefined' is not assignable to type 'string'.
+          Type 'undefined' is not assignable to type 'string'.
+src/modules/apps/Team/TeamMembersTab.tsx(275,21): error TS2322: Type '"OWNER"' is not assignable to type 'TeamRole'.
+src/modules/apps/Team/TeamSidebar/index.tsx(7,1): error TS6133: 'IntlMessages' is declared but its value is never read.
+src/modules/auth/Signin/SigninFirebase.tsx(30,11): error TS2339: Property 'logInWithEmailAndPassword' does not exist on type '{ signInUser: (data: SignInProps) => void; logout: () => void; signUpUser: (data: SignUpProps) => void; }'.
+src/modules/auth/Signin/SigninFirebase.tsx(30,38): error TS2339: Property 'logInWithPopup' does not exist on type '{ signInUser: (data: SignInProps) => void; logout: () => void; signUpUser: (data: SignUpProps) => void; }'.
+src/modules/auth/Signin/SigninJwtAuth.tsx(63,36): error TS2353: Object literal may only specify known properties, and 'tab' does not exist in type 'NavigateOptions'.
+src/modules/auth/Signup/SignupFirebase.tsx(29,11): error TS2339: Property 'registerUserWithEmailAndPassword' does not exist on type '{ signInUser: (data: SignInProps) => void; logout: () => void; signUpUser: (data: SignUpProps) => void; }'.
+src/modules/auth/Signup/SignupFirebase.tsx(29,45): error TS2339: Property 'logInWithPopup' does not exist on type '{ signInUser: (data: SignInProps) => void; logout: () => void; signUpUser: (data: SignUpProps) => void; }'.
+src/modules/dashboards/Academy/index.tsx(22,1): error TS6133: 'AppInfoView' is declared but its value is never read.
+src/modules/dashboards/Analytics/PageVisits/VisitsTable/index.tsx(18,9): error TS2322: Type '{ children: (Element | PageVisitType)[]; }' is not assignable to type '{ children?: ReactNode; }'.
+  Types of property 'children' are incompatible.
+    Type '(Element | PageVisitType)[]' is not assignable to type 'ReactNode'.
+      Type '(Element | PageVisitType)[]' is not assignable to type 'Iterable<ReactNode>'.
+        The types returned by '[Symbol.iterator]().next(...)' are incompatible between these types.
+          Type 'IteratorResult<Element | PageVisitType, undefined>' is not assignable to type 'IteratorResult<ReactNode, any>'.
+            Type 'IteratorYieldResult<Element | PageVisitType>' is not assignable to type 'IteratorResult<ReactNode, any>'.
+              Type 'IteratorYieldResult<Element | PageVisitType>' is not assignable to type 'IteratorYieldResult<ReactNode>'.
+                Type 'Element | PageVisitType' is not assignable to type 'ReactNode'.
+                  Type 'PageVisitType' is not assignable to type 'ReactNode'.
+src/modules/dashboards/Analytics/SalesState/index.tsx(51,9): error TS2322: Type '{ children: (string | MessageFormatElement[])[]; }' is not assignable to type '{ children?: ReactNode; }'.
+  Types of property 'children' are incompatible.
+    Type '(string | MessageFormatElement[])[]' is not assignable to type 'ReactNode'.
+      Type '(string | MessageFormatElement[])[]' is not assignable to type 'Iterable<ReactNode>'.
+        The types returned by '[Symbol.iterator]().next(...)' are incompatible between these types.
+          Type 'IteratorResult<string | MessageFormatElement[], undefined>' is not assignable to type 'IteratorResult<ReactNode, any>'.
+            Type 'IteratorYieldResult<string | MessageFormatElement[]>' is not assignable to type 'IteratorResult<ReactNode, any>'.
+              Type 'IteratorYieldResult<string | MessageFormatElement[]>' is not assignable to type 'IteratorYieldResult<ReactNode>'.
+                Type 'string | MessageFormatElement[]' is not assignable to type 'ReactNode'.
+                  Type 'MessageFormatElement[]' is not assignable to type 'ReactNode'.
+                    Type 'MessageFormatElement[]' is not assignable to type 'Iterable<ReactNode>'.
+                      The types returned by '[Symbol.iterator]().next(...)' are incompatible between these types.
+                        Type 'IteratorResult<MessageFormatElement, undefined>' is not assignable to type 'IteratorResult<ReactNode, any>'.
+                          Type 'IteratorYieldResult<MessageFormatElement>' is not assignable to type 'IteratorResult<ReactNode, any>'.
+                            Type 'IteratorYieldResult<MessageFormatElement>' is not assignable to type 'IteratorYieldResult<ReactNode>'.
+                              Type 'MessageFormatElement' is not assignable to type 'ReactNode'.
+                                Type 'ArgumentElement' is not assignable to type 'ReactNode'.
+                                  Type 'BaseElement<TYPE.argument>' is missing the following properties from type 'ReactPortal': children, props, key
+src/modules/dashboards/TaskManagement/BoardOverview.tsx(1,1): error TS6133: 'React' is declared but its value is never read.
+src/modules/dashboards/TaskManagement/index.tsx(1,1): error TS6133: 'React' is declared but its value is never read.
+src/modules/dashboards/TaskManagement/index.tsx(2,10): error TS6133: 'Row' is declared but its value is never read.
+src/modules/dashboards/TaskManagement/RecentActivities.tsx(1,1): error TS6133: 'React' is declared but its value is never read.
+src/modules/dashboards/TaskManagement/StatsCards.tsx(1,1): error TS6133: 'React' is declared but its value is never read.
+src/modules/dashboards/TaskManagement/TaskCompletionTrend.tsx(1,1): error TS6133: 'React' is declared but its value is never read.
+src/modules/dashboards/TaskManagement/TeamMembers.tsx(1,1): error TS6133: 'React' is declared but its value is never read.
+src/modules/dashboards/TaskManagement/TeamProductivity.tsx(1,1): error TS6133: 'React' is declared but its value is never read.
+src/modules/dashboards/TaskManagement/TeamProductivity.tsx(29,24): error TS6133: 'entry' is declared but its value is never read.
+src/modules/dashboards/TaskManagement/UpcomingDeadlines.tsx(1,1): error TS6133: 'React' is declared but its value is never read.
+src/modules/thirdParty/reactColor/CustomPointer/MyPicker.tsx(17,9): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: AlphaProps): Alpha', gave the following error.
+    Type 'Element' is not assignable to type 'ComponentType<{ direction?: "vertical" | undefined; }> | undefined'.
+  Overload 2 of 2, '(props: AlphaProps, context: any): Alpha', gave the following error.
+    Type 'Element' is not assignable to type 'ComponentType<{ direction?: "vertical" | undefined; }> | undefined'.
+src/modules/userList/Flat/index.tsx(1,1): error TS6133: 'AppInfoView' is declared but its value is never read.
+src/modules/userList/Modern/index.tsx(3,1): error TS6133: 'AppInfoView' is declared but its value is never read.
+src/modules/userList/Standard/index.tsx(4,1): error TS6133: 'AppInfoView' is declared but its value is never read.
