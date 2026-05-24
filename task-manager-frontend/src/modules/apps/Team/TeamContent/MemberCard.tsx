@@ -75,7 +75,7 @@ const MemberCard: React.FC<MemberCardProps> = ({
 
     Modal.confirm({
       title: messages["team.changeRole"] as string,
-      content: `${messages["team.confirmChangeRole"]} ${member.name} ${messages["team.to"]} ${getRoleDisplayName(newRole as any)}?`,
+      content: `${messages["team.confirmChangeRole"]} ${member.name} ${messages["team.to"]} ${messages[getRoleDisplayName(newRole as any)]}?`,
       onOk: async () => {
         setLoading(true);
         try {
@@ -185,7 +185,7 @@ const MemberCard: React.FC<MemberCardProps> = ({
             <MailOutlined /> {member.email}
           </p>
           <Tag color={getRoleColor(member.role)}>
-            {getRoleIcon(member.role)} {getRoleDisplayName(member.role)}
+            {getRoleIcon(member.role)} <IntlMessages id={getRoleDisplayName(member.role)} />
           </Tag>
         </StyledMemberInfo>
 

@@ -428,13 +428,11 @@ public class CardService {
 
         validateWorkflow(currentStatus, targetStatus);
 
-        if (targetStatus == ListStatusType.IN_PROGRESS) {
-            log.info("Target status is IN_PROGRESS, checking dependencies for card {}", card.getId());
-            validateDependenciesForStart(card.getId());
-        }
-
         if (targetStatus == ListStatusType.DONE) {
-            log.info("Target status is DONE, checking definition of done for card {}", card.getId());
+            log.info("Target status is DONE, checking dependencies and definition of done for card {}", card.getId());
+            // 1. Kiểm tra các công việc tiền đề
+            validateDependenciesForStart(card.getId());
+            // 2. Kiểm tra các tiêu chí hoàn thành (checklist, member...)
             validateDefinitionOfDone(card.getId(), currentStatus, targetMemberIds);
         }
     }
@@ -447,27 +445,14 @@ public class CardService {
     }
 
     private void validateWorkflow(ListStatusType currentStatus, ListStatusType targetStatus) {
-        // Disallow skipping TODO -> DONE
+        // Vẫn giữ lại logic không cho phép nhảy cóc từ TODO lên DONE mà không qua bước trung gian
         if (currentStatus == ListStatusType.TODO && targetStatus == ListStatusType.DONE) {
             throw new vn.nguyenlong.taskmanager.core.exception.AppException(
                     vn.nguyenlong.taskmanager.core.exception.ErrorCode.SCRUMBOARD_WORKFLOW_INVALID
             );
         }
         
-        // Disallow backward moves from DONE
-        if (currentStatus == ListStatusType.DONE && 
-            (targetStatus == ListStatusType.IN_PROGRESS || targetStatus == ListStatusType.TODO)) {
-            throw new vn.nguyenlong.taskmanager.core.exception.AppException(
-                    vn.nguyenlong.taskmanager.core.exception.ErrorCode.SCRUMBOARD_WORKFLOW_BACKWARD_NOT_ALLOWED
-            );
-        }
-        
-        // Disallow backward move from IN_PROGRESS to TODO
-        if (currentStatus == ListStatusType.IN_PROGRESS && targetStatus == ListStatusType.TODO) {
-            throw new vn.nguyenlong.taskmanager.core.exception.AppException(
-                    vn.nguyenlong.taskmanager.core.exception.ErrorCode.SCRUMBOARD_WORKFLOW_BACKWARD_NOT_ALLOWED
-            );
-        }
+        // Đã xóa bỏ các ràng buộc kéo ngược (Backward) để người dùng linh hoạt hơn
     }
 
     private void validateDependenciesForStart(Long successorCardId) {

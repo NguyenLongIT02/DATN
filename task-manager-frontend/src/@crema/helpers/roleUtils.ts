@@ -66,40 +66,49 @@ export const getRoleDisplayName = (role: TeamRole | string): string => {
   switch (roleStr) {
     case 'PM':
     case 'Project Manager':
-      return 'Quản lý dự án';
+      return 'team.rolePM';
     case 'TEAM_LEAD':
     case 'Team Lead':
-      return 'Trưởng nhóm';
+      return 'team.roleTeamLead';
     case 'ADMIN':
-      return 'Quản trị viên';
+      return 'team.roleAdmin';
     case 'MEMBER':
     case 'Member':
     case TeamRole.MEMBER:
-      return 'Thành viên';
+      return 'team.roleMember';
     case 'VIEWER':
     case 'Viewer':
     case TeamRole.VIEWER:
-      return 'Người xem';
+      return 'team.roleViewer';
     default:
-      return 'Không xác định';
+      return 'team.roleUnknown';
   }
 };
 
 /**
  * Lấy mô tả của role
  */
-export const getRoleDescription = (role: TeamRole): string => {
-  switch (role) {
+export const getRoleDescription = (role: TeamRole | string): string => {
+  const roleStr = typeof role === 'string' ? role : String(role);
+  switch (roleStr) {
+    case 'PM':
+    case 'Project Manager':
     case TeamRole.PM:
-      return 'Có quyền cao nhất, quản lý toàn bộ board';
+      return 'team.pmGuide';
+    case 'TEAM_LEAD':
+    case 'Team Lead':
     case TeamRole.TEAM_LEAD:
-      return 'Có thể mời thành viên, thay đổi vai trò và chỉnh sửa board';
+      return 'team.teamLeadGuide';
+    case 'MEMBER':
+    case 'Member':
     case TeamRole.MEMBER:
-      return 'Có thể xem và chỉ bình luận, cập nhật checklist';
+      return 'team.memberGuide';
+    case 'VIEWER':
+    case 'Viewer':
     case TeamRole.VIEWER:
-      return 'Chỉ có quyền xem (read-only)';
+      return 'team.viewerGuide';
     default:
-      return 'Không xác định';
+      return 'team.roleUnknown';
   }
 };
 

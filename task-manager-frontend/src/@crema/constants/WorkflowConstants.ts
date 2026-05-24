@@ -14,7 +14,7 @@ export const WORKFLOW_RULES = {
   ],
 
   // Transitions that require dependency check
-  REQUIRES_DEPENDENCY_CHECK: [WorkflowStatus.IN_PROGRESS],
+  REQUIRES_DEPENDENCY_CHECK: [WorkflowStatus.DONE],
 
   // Transitions that require DoD check
   REQUIRES_DOD_CHECK: [WorkflowStatus.DONE],

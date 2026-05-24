@@ -22,6 +22,7 @@ import vn.nguyenlong.taskmanager.scrumboard.security.AuthzService;
 import vn.nguyenlong.taskmanager.scrumboard.service.MemberService;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -76,6 +77,18 @@ public class BoardService {
                 // Fetch all lists with their cards in one query
                 List<ListEntity> listsWithCards = listRepository.findByIdsWithCards(listIds);
                 
+                // Sort board lists according to Scrum flow
+                board.setLists(new ArrayList<>(board.getLists()));
+                board.getLists().sort((l1, l2) -> {
+                    int p1 = getStatusPriority(l1.getStatusType());
+                    int p2 = getStatusPriority(l2.getStatusType());
+                    if (p1 != p2) return Integer.compare(p1, p2);
+                    
+                    Instant t1 = l1.getCreatedAt() != null ? l1.getCreatedAt() : Instant.EPOCH;
+                    Instant t2 = l2.getCreatedAt() != null ? l2.getCreatedAt() : Instant.EPOCH;
+                    return t1.compareTo(t2);
+                });
+
                 // Update the board's lists with cards
                 for (ListEntity list : board.getLists()) {
                     listsWithCards.stream()
@@ -125,6 +138,18 @@ public class BoardService {
             
             List<ListEntity> listsWithCards = listRepository.findByIdsWithCards(listIds);
             
+            // Sort board lists according to Scrum flow
+            board.setLists(new ArrayList<>(board.getLists()));
+            board.getLists().sort((l1, l2) -> {
+                int p1 = getStatusPriority(l1.getStatusType());
+                int p2 = getStatusPriority(l2.getStatusType());
+                if (p1 != p2) return Integer.compare(p1, p2);
+                
+                Instant t1 = l1.getCreatedAt() != null ? l1.getCreatedAt() : Instant.EPOCH;
+                Instant t2 = l2.getCreatedAt() != null ? l2.getCreatedAt() : Instant.EPOCH;
+                return t1.compareTo(t2);
+            });
+
             for (ListEntity list : board.getLists()) {
                 listsWithCards.stream()
                         .filter(l -> l.getId().equals(list.getId()))
@@ -360,5 +385,15 @@ public class BoardService {
                 return null;
             }
         }
+    }
+
+    private int getStatusPriority(ListStatusType statusType) {
+        if (statusType == null) return 4;
+        return switch (statusType) {
+            case TODO -> 1;
+            case IN_PROGRESS -> 2;
+            case DONE -> 3;
+            case NONE -> 4;
+        };
     }
 }

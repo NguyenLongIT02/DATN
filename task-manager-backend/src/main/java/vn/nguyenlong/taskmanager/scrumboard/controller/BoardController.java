@@ -1,4 +1,5 @@
 package vn.nguyenlong.taskmanager.scrumboard.controller;
+// Trigger recompile
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -115,17 +116,17 @@ public class BoardController {
                 boardAiSuggestionService.generateBoardSuggestions(id, currentUserId));
     }
 
-        @PostMapping("/{id}/ai-chat")
-        @Operation(summary = "Chat with board AI", description = "Ask follow-up questions about board data and receive grounded AI responses")
-        public SuccessResponse<AiBoardChatResponseDto> chatWithBoardAi(
+    @PostMapping("/{id}/ai-chat")
+    @Operation(summary = "Chat with board AI", description = "Ask follow-up questions about board data and receive grounded AI responses")
+    public SuccessResponse<AiBoardChatResponseDto> chatWithBoardAi(
             @Parameter(description = "Board ID") @PathVariable Long id,
             @Valid @RequestBody AiBoardChatRequestDto request,
             Principal principal) {
         Long currentUserId = extractUserIdFromPrincipal(principal);
         return ResponseUtil.ok(HttpStatus.OK.value(),
-            translateMessage.translate(MessageKeys.BOARD_AI_CHAT_SUCCESS),
-            boardAiSuggestionService.answerBoardQuestion(id, currentUserId, request));
-        }
+                translateMessage.translate(MessageKeys.BOARD_AI_CHAT_SUCCESS),
+                boardAiSuggestionService.answerBoardQuestion(id, currentUserId, request));
+    }
 
     private Long extractUserIdFromPrincipal(Principal principal) {
         if (principal == null) {

@@ -5,6 +5,7 @@ import {
   getRoleColor,
   getRoleIcon,
   getRoleDisplayName,
+  getRoleDescription,
 } from "@crema/helpers/roleUtils";
 import { permissionService } from "@crema/services/PermissionService";
 import IntlMessages from "@crema/helpers/IntlMessages";
@@ -17,18 +18,7 @@ const RolesPermissionsTab: React.FC = () => {
   const { messages } = useIntl();
   const roles = ["PM", "TEAM_LEAD", "MEMBER"];
 
-  const getRoleDescription = (role: string): string => {
-    switch (role) {
-      case "PM":
-        return messages["team.pmGuide"] as string;
-      case "TEAM_LEAD":
-        return messages["team.teamLeadGuide"] as string;
-      case "MEMBER":
-        return messages["team.memberGuide"] as string;
-      default:
-        return "";
-    }
-  };
+
 
   const getPermissionList = (role: string) => {
     // TEAM_LEAD has similar permissions to PM except delete board
@@ -134,7 +124,7 @@ const RolesPermissionsTab: React.FC = () => {
                         border: "none",
                       }}
                     >
-                      {getRoleDisplayName(role)}
+                      <IntlMessages id={getRoleDisplayName(role)} />
                     </Tag>
                     <Text
                       style={{
@@ -145,7 +135,7 @@ const RolesPermissionsTab: React.FC = () => {
                         marginTop: 8,
                       }}
                     >
-                      {getRoleDescription(role)}
+                      <IntlMessages id={getRoleDescription(role as any)} />
                     </Text>
                   </div>
 

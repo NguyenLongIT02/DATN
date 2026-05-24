@@ -1,4 +1,5 @@
 package vn.nguyenlong.taskmanager.core.entity;
+// Trigger recompile
 
 import lombok.Getter;
 import lombok.ToString;

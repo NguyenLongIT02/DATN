@@ -15,6 +15,8 @@ import {
   Checkbox,
   Button,
 } from "antd";
+import { useIntl } from "react-intl";
+import IntlMessages from "@crema/helpers/IntlMessages";
 import {
   UserOutlined,
   CheckCircleOutlined,
@@ -111,7 +113,7 @@ const CardItem: React.FC<{ card: CardProgress }> = ({ card }) => {
           {card.title}
         </div>
         {overdue && (
-          <Tooltip title="Quá hạn">
+          <Tooltip title={messages["team.overdue"] as string}>
             <ExclamationCircleOutlined style={{ color: "#ff4d4f", marginLeft: 8, flexShrink: 0 }} />
           </Tooltip>
         )}
@@ -121,8 +123,8 @@ const CardItem: React.FC<{ card: CardProgress }> = ({ card }) => {
       {card.dueDate && (
         <div style={{ fontSize: 12, color: overdue ? "#ff4d4f" : "#888", marginTop: 6 }}>
           <ClockCircleOutlined style={{ marginRight: 4 }} />
-          {new Date(card.dueDate).toLocaleDateString("vi-VN")}
-          {overdue && <span style={{ marginLeft: 6, fontWeight: 600 }}>— Quá hạn</span>}
+          {new Date(card.dueDate).toLocaleDateString()}
+          {overdue && <span style={{ marginLeft: 6, fontWeight: 600 }}>— <IntlMessages id="team.overdue" /></span>}
         </div>
       )}
 
@@ -144,9 +146,9 @@ const CardItem: React.FC<{ card: CardProgress }> = ({ card }) => {
           >
             <span>
               <UnorderedListOutlined style={{ marginRight: 4 }} />
-              Checklist ({checkProgress.done}/{checkProgress.total})
+              <IntlMessages id="scrumboard.checkedLists" /> ({checkProgress.done}/{checkProgress.total})
             </span>
-            <span style={{ fontSize: 11, color: "#1890ff" }}>{expanded ? "Thu gọn ▲" : "Xem chi tiết ▼"}</span>
+            <span style={{ fontSize: 11, color: "#1890ff" }}>{expanded ? <IntlMessages id="team.collapse" /> + " ▲" : <IntlMessages id="team.viewDetail" /> + " ▼"}</span>
           </div>
 
           <Progress
@@ -209,7 +211,7 @@ const CardColumn: React.FC<ColumnProps> = ({ title, count, cards }) => (
     </div>
     {cards.length === 0 ? (
       <div style={{ textAlign: "center", color: "#bbb", padding: "16px 0", fontSize: 13 }}>
-        Không có công việc
+        <IntlMessages id="team.noTasks" />
       </div>
     ) : (
       cards.map((card) => <CardItem key={card.id} card={card} />)
@@ -221,26 +223,22 @@ const CardColumn: React.FC<ColumnProps> = ({ title, count, cards }) => (
 const exportProgressToPdf = async (
   member: TeamMember,
   progress: MemberProgressData,
-  boardName: string
+  boardName: string,
+  messages: any
 ) => {
   const pct =
     progress.totalCards > 0
       ? Math.round((progress.doneCards.length / progress.totalCards) * 100)
       : 0;
 
-  const roleLabel =
-    String(member.role) === "PM" || String(member.role) === "Project Manager"
-      ? "Quản lý dự án"
-      : String(member.role) === "TEAM_LEAD" || String(member.role) === "Team Lead"
-      ? "Trưởng nhóm"
-      : "Thành viên";
+  const roleLabel = messages[getRoleDisplayName(member.role)];
 
   const renderCards = (cards: CardProgress[], sectionIndex: number) =>
     cards
       .map((card, cardIndex) => {
         const cp = getCheckedProgress(card.checkedList);
         const dueDateText = card.dueDate
-          ? new Date(card.dueDate).toLocaleDateString("vi-VN")
+          ? new Date(card.dueDate).toLocaleDateString()
           : "";
         const overdue = isOverdue(card.dueDate, card.isDone);
 
@@ -263,8 +261,8 @@ const exportProgressToPdf = async (
             </div>
             ${dueDateText
               ? `<div style="font-size:12pt;margin-top:2px;">
-                  <em>Hạn chót:</em> ${dueDateText}
-                  ${overdue ? `<strong style="color:#cc0000;"> — Quá hạn</strong>` : ""}
+                  <em>${messages["team.dueDate"]}:</em> ${dueDateText}
+                  ${overdue ? `<strong style="color:#cc0000;"> — ${messages["team.overdue"]}</strong>` : ""}
                 </div>`
               : ""}
             ${cp
@@ -282,7 +280,7 @@ const exportProgressToPdf = async (
     return `
       <div style="margin-bottom:18px;">
         <div style="font-size:13pt;font-weight:bold;text-decoration:underline;margin-bottom:6px;">
-          ${title} (${cards.length} công việc)
+          ${title} (${cards.length} ${messages["team.tasks"].toLowerCase()})
         </div>
         ${renderCards(cards, index)}
       </div>`;
@@ -301,52 +299,52 @@ const exportProgressToPdf = async (
     ">
       <!-- Tiêu đề -->
       <h1 style="text-align:center;font-size:15pt;font-weight:bold;text-transform:uppercase;margin:0 0 4px 0;letter-spacing:0.5px;">
-        Báo cáo tiến độ công việc
+        ${messages["team.viewProgress"]}
       </h1>
       <p style="text-align:center;font-size:13pt;font-style:italic;margin:0 0 20px 0;">
-        Dự án: ${boardName}
+        ${messages["scrumboard.board"]}: ${boardName}
       </p>
 
 
       <!-- Thông tin -->
       <table style="width:100%;border-collapse:collapse;margin-bottom:12px;font-size:12pt;">
         <tr>
-          <td style="width:50%;padding:2px 0;"><strong>Họ và tên:</strong> ${member.name}</td>
-          <td style="width:50%;padding:2px 0;"><strong>Vai trò:</strong> ${roleLabel}</td>
+          <td style="width:50%;padding:2px 0;"><strong>${messages["common.name"]}:</strong> ${member.name}</td>
+          <td style="width:50%;padding:2px 0;"><strong>${messages["team.role"]}:</strong> ${roleLabel}</td>
         </tr>
         <tr>
           <td style="padding:2px 0;"><strong>Email:</strong> ${member.email || "—"}</td>
-          <td style="padding:2px 0;"><strong>Ngày xuất:</strong> ${new Date().toLocaleString("vi-VN")}</td>
+          <td style="padding:2px 0;"><strong>${messages["common.date"]}:</strong> ${new Date().toLocaleString()}</td>
         </tr>
         <tr>
           <td colspan="2" style="padding:2px 0;">
-            <strong>Tổng tiến độ:</strong>
-            ${progress.totalCards} công việc —
-            Chưa làm: ${progress.todoCards.length} |
-            Đang làm: ${progress.inProgressCards.length} |
-            Hoàn thành: ${progress.doneCards.length} (${pct}%)
+            <strong>${messages["team.overallProgress"]}:</strong>
+            ${progress.totalCards} ${messages["team.tasks"].toLowerCase()} —
+            ${messages["team.todo"]}: ${progress.todoCards.length} |
+            ${messages["team.inprogress"]}: ${progress.inProgressCards.length} |
+            ${messages["team.done"]}: ${progress.doneCards.length} (${pct}%)
           </td>
         </tr>
       </table>
 
       <hr style="border:none;border-top:1px solid #000;margin:12px 0 20px 0;" />
 
-      ${sectionHtml("I. CHƯA LÀM", progress.todoCards, 1)}
-      ${sectionHtml("II. ĐANG LÀM", progress.inProgressCards, 2)}
-      ${sectionHtml("III. HOÀN THÀNH", progress.doneCards, 3)}
-      ${progress.otherCards.length > 0 ? sectionHtml("IV. KHÁC", progress.otherCards, 4) : ""}
+      ${sectionHtml(messages["team.todo"].toUpperCase(), progress.todoCards, 1)}
+      ${sectionHtml(messages["team.inprogress"].toUpperCase(), progress.inProgressCards, 2)}
+      ${sectionHtml(messages["team.done"].toUpperCase(), progress.doneCards, 3)}
+      ${progress.otherCards.length > 0 ? sectionHtml(messages["team.other"].toUpperCase(), progress.otherCards, 4) : ""}
 
       <hr style="border:none;border-top:1px solid #000;margin:20px 0 16px 0;" />
 
       <!-- Ký tên -->
       <table style="width:100%;margin-top:24px;font-size:12pt;">
         <tr>
-          <td style="width:50%;text-align:center;font-style:italic;">Người thực hiện</td>
-          <td style="width:50%;text-align:center;font-style:italic;">Quản lý dự án</td>
+          <td style="width:50%;text-align:center;font-style:italic;">${messages["team.assignee"]}</td>
+          <td style="width:50%;text-align:center;font-style:italic;">${messages["team.rolePM"]}</td>
         </tr>
         <tr>
-          <td style="text-align:center;font-size:10pt;color:#555;">(Ký, ghi rõ họ tên)</td>
-          <td style="text-align:center;font-size:10pt;color:#555;">(Ký, ghi rõ họ tên)</td>
+          <td style="text-align:center;font-size:10pt;color:#555;">${messages["team.signatureHint"]}</td>
+          <td style="text-align:center;font-size:10pt;color:#555;">${messages["team.signatureHint"]}</td>
         </tr>
       </table>
     </div>`;
@@ -368,6 +366,7 @@ const MemberProgressModal: React.FC<MemberProgressModalProps> = ({
   boardName,
   onClose,
 }) => {
+  const { messages } = useIntl();
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState<MemberProgressData | null>(null);
 
@@ -467,17 +466,17 @@ const MemberProgressModal: React.FC<MemberProgressModalProps> = ({
               {member?.email}
             </div>
             <Tag style={{ marginTop: 6, border: "none" }} color={getRoleColor(member?.role || "")}>
-              {getRoleIcon(member?.role || "")} {getRoleDisplayName(member?.role || "")}
+              {getRoleIcon(member?.role || "")} <IntlMessages id={getRoleDisplayName(member?.role || "")} />
             </Tag>
           </div>
 
           {/* Nút PDF */}
           {progress && progress.totalCards > 0 && (
-            <Tooltip title="Xuất tiến độ ra PDF">
+            <Tooltip title={messages["team.exportProgressPDFTooltip"] as string}>
               <Button
                 icon={<FilePdfOutlined />}
                 onClick={async () => {
-                  await exportProgressToPdf(member!, progress, boardName || `Board #${boardId}`);
+                  await exportProgressToPdf(member!, progress, boardName || `Board #${boardId}`, messages);
                 }}
                 style={{
                   background: "rgba(255,255,255,0.15)",
@@ -486,7 +485,7 @@ const MemberProgressModal: React.FC<MemberProgressModalProps> = ({
                   borderRadius: 20,
                 }}
               >
-                Xuất PDF
+                <IntlMessages id="dashboard.crm.exportasPDF" />
               </Button>
             </Tooltip>
           )}
@@ -494,7 +493,7 @@ const MemberProgressModal: React.FC<MemberProgressModalProps> = ({
           {/* Progress circle */}
           <div style={{ textAlign: "center" }}>
             <div style={{ color: "rgba(255,255,255,0.8)", fontSize: 11, marginBottom: 4 }}>
-              Tiến độ tổng thể
+              <IntlMessages id="team.overallProgress" />
             </div>
             <Progress
               type="circle"
@@ -515,13 +514,13 @@ const MemberProgressModal: React.FC<MemberProgressModalProps> = ({
         {loading ? (
           <div style={{ textAlign: "center", padding: 60 }}>
             <Spin size="large" />
-            <div style={{ marginTop: 12, color: "#888" }}>Đang tải tiến độ...</div>
+            <div style={{ marginTop: 12, color: "#888" }}><IntlMessages id="team.loadingProgress" /></div>
           </div>
         ) : !progress || progress.totalCards === 0 ? (
           <Empty
             description={
               <span>
-                <b>{member?.name}</b> chưa được giao công việc nào trong dự án này
+                <b>{member?.name}</b> <IntlMessages id="team.notAssigned" />
               </span>
             }
             style={{ padding: 40 }}
@@ -532,25 +531,25 @@ const MemberProgressModal: React.FC<MemberProgressModalProps> = ({
             <Row gutter={16} style={{ marginBottom: 20 }}>
               <Col xs={6}>
                 <Statistic
-                  title="Tổng công việc"
+                  title={messages["team.totalTasks"] as string}
                   value={progress.totalCards}
                 />
               </Col>
               <Col xs={6}>
                 <Statistic
-                  title="Chưa làm"
+                  title={messages["team.todo"] as string}
                   value={progress.todoCards.length}
                 />
               </Col>
               <Col xs={6}>
                 <Statistic
-                  title="Đang làm"
+                  title={messages["team.inprogress"] as string}
                   value={progress.inProgressCards.length}
                 />
               </Col>
               <Col xs={6}>
                 <Statistic
-                  title="Hoàn thành"
+                  title={messages["team.done"] as string}
                   value={progress.doneCards.length}
                 />
               </Col>
@@ -562,21 +561,21 @@ const MemberProgressModal: React.FC<MemberProgressModalProps> = ({
             <Row gutter={[20, 20]}>
               <Col xs={24} md={8}>
                 <CardColumn
-                  title="Chưa làm"
+                  title={messages["team.todo"] as string}
                   count={progress.todoCards.length}
                   cards={progress.todoCards}
                 />
               </Col>
               <Col xs={24} md={8}>
                 <CardColumn
-                  title="Đang làm"
+                  title={messages["team.inprogress"] as string}
                   count={progress.inProgressCards.length}
                   cards={progress.inProgressCards}
                 />
               </Col>
               <Col xs={24} md={8}>
                 <CardColumn
-                  title="Hoàn thành"
+                  title={messages["team.done"] as string}
                   count={progress.doneCards.length}
                   cards={progress.doneCards}
                 />
@@ -584,7 +583,7 @@ const MemberProgressModal: React.FC<MemberProgressModalProps> = ({
               {progress.otherCards.length > 0 && (
                 <Col xs={24}>
                   <CardColumn
-                    title="Khác"
+                    title={messages["team.other"] as string}
                     count={progress.otherCards.length}
                     cards={progress.otherCards}
                   />

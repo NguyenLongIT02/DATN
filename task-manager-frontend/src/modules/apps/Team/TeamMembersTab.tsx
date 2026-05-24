@@ -200,7 +200,7 @@ const TeamMembersTab: React.FC<TeamMembersTabProps> = ({
       key: "role",
       render: (role: TeamRole | string) => (
         <Tag color={getRoleColor(role)}>
-          {getRoleIcon(role)} {getRoleDisplayName(role)}
+          {getRoleIcon(role)} <IntlMessages id={getRoleDisplayName(role)} />
         </Tag>
       ),
     },
@@ -219,10 +219,10 @@ const TeamMembersTab: React.FC<TeamMembersTabProps> = ({
     ...(boardId
       ? [
           {
-            title: "Tiến độ",
+            title: messages["common.progress"] as string,
             key: "action",
             render: (_: unknown, record: TeamMember) => (
-              <Tooltip title="Xem tiến độ công việc">
+              <Tooltip title={messages["team.viewProgressTooltip"] as string}>
                 <Button
                   type="link"
                   size="small"
@@ -232,7 +232,7 @@ const TeamMembersTab: React.FC<TeamMembersTabProps> = ({
                     setIsProgressModalVisible(true);
                   }}
                 >
-                  Xem tiến độ
+                  <IntlMessages id="team.viewProgress" />
                 </Button>
               </Tooltip>
             ),
@@ -272,7 +272,7 @@ const TeamMembersTab: React.FC<TeamMembersTabProps> = ({
             </p>
           </div>
           <div style={{ display: "flex", gap: 8 }}>
-            <Tooltip title="Xuất danh sách thành viên ra PDF">
+            <Tooltip title={messages["team.exportPDFTooltip"] as string}>
               <Button
                 icon={<FilePdfOutlined />}
                 onClick={async () => {
@@ -284,7 +284,7 @@ const TeamMembersTab: React.FC<TeamMembersTabProps> = ({
                 }}
                 disabled={filteredMembers.length === 0}
               >
-                Xuất PDF
+                <IntlMessages id="dashboard.crm.exportasPDF" />
               </Button>
             </Tooltip>
             <Button
@@ -374,7 +374,7 @@ const TeamMembersTab: React.FC<TeamMembersTabProps> = ({
                     />
                     {/* Nút xem tiến độ overlay */}
                     {boardId && (
-                      <Tooltip title="Xem tiến độ công việc">
+                      <Tooltip title={messages["team.viewProgressTooltip"] as string}>
                         <Button
                           type="primary"
                           size="small"
@@ -391,7 +391,7 @@ const TeamMembersTab: React.FC<TeamMembersTabProps> = ({
                             setIsProgressModalVisible(true);
                           }}
                         >
-                          Tiến độ
+                          <IntlMessages id="common.progress" />
                         </Button>
                       </Tooltip>
                     )}

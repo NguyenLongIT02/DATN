@@ -137,6 +137,7 @@ public class BoardAiSuggestionService {
                         priorities,
                         risks,
                         assignments,
+                        cards,
                         ruleSummary,
                         ruleActions
                 );
@@ -1032,7 +1033,15 @@ public class BoardAiSuggestionService {
         }
 
         if (!handledByKeyword) {
-            parts.add("Board \"" + boardName + "\" đang có " + totalCards + " thẻ công việc.");
+            if (containsAny(normalizedQuestion, "nấu", "ăn", "uống", "món", "thực đơn", "thịt", "cá", "bếp")) {
+                parts.add("Nghe có vẻ hấp dẫn đấy! 😋 Nhưng mình là chuyên gia Scrum Master, mình giỏi 'nấu' các task hơn là nấu ăn. Để mình giúp bạn quay lại với dự án nhé:");
+            } else if (containsAny(normalizedQuestion, "chào", "hi", "hello", "xin chào")) {
+                parts.add("Chào bạn! Rất vui được hỗ trợ. Hãy để mình cập nhật nhanh tình hình board cho bạn nhé:");
+            } else {
+                parts.add("Câu hỏi của bạn thú vị đấy! Để mình dẫn dắt bạn quay lại với tình hình board \"" + boardName + "\" hiện tại nhé:");
+            }
+            
+            parts.add("Board hiện đang có " + totalCards + " thẻ công việc.");
 
             if (priorities != null && !priorities.isEmpty()) {
                 AiBoardSuggestionDto.PriorityItem topPriority = priorities.get(0);
@@ -1399,62 +1408,36 @@ public class BoardAiSuggestionService {
             String fallbackSummary,
             List<String> fallbackActions
     ) throws Exception {
-        String systemPrompt = "Bạn là trợ lý phân tích board Kanban. "
-                + "Bạn phải trả lời bằng tiếng Việt. "
+        String systemPrompt = "Bạn là một Scrum Master xuất sắc và Chuyên gia phân tích dữ liệu dự án. "
+                + "Nhiệm vụ của bạn là hỗ trợ team quản lý dự án hiệu quả thông qua việc phân tích board Kanban. "
+                + "Bạn phải trả lời bằng tiếng Việt một cách thông minh, chuyên nghiệp và thân thiện. "
                 + "\n\n"
-                + "NGUYÊN TẮC QUAN TRỌNG NHẤT - CHỈ NÓI VỀ DỮ LIỆU THỰC TẾ:\n"
-                + "1. CHỈ được phân tích dựa trên dữ liệu CÓ TRONG JSON được cung cấp.\n"
-                + "2. TUYỆT ĐỐI KHÔNG suy đoán, giả định, hoặc bịa đặt thông tin.\n"
-                + "3. Nếu dữ liệu không có (null, empty, []), KHÔNG được nói về nó.\n"
-                + "4. Nếu không chắc chắn, tốt hơn là KHÔNG NÓI.\n"
+                + "NGUYÊN TẮC CỐT LÕI:\n"
+                + "1. Căn cứ hoàn toàn vào dữ liệu thực tế trong JSON được cung cấp (cards, members, workloads).\n"
+                + "2. Không bịa đặt thông tin. Nếu dữ liệu không có, hãy trả lời khéo léo là chưa có thông tin.\n"
+                + "3. Luôn ưu tiên sự an toàn và tiến độ dự án.\n"
+                + "4. XỬ LÝ NGOÀI LỀ: Nếu người dùng hỏi các chủ đề không liên quan đến dự án (nấu ăn, đời sống, v.v.), hãy trả lời một cách hóm hỉnh và khéo léo dẫn dắt (pivot) câu chuyện quay trở lại tình hình thực tế của board dự án. Ví dụ: 'Món thịt kho nghe hấp dẫn đấy, nhưng có vẻ team mình nên 'kho' nốt thẻ [Tên thẻ] đang quá hạn kia thì bữa cơm mới ngon được!'\n"
                 + "\n"
-                + "CÁC TRƯỜNG HỢP CỤ THỂ:\n"
-                + "- Nếu comments: [] → KHÔNG được nói \"có nhiều thảo luận\"\n"
-                + "- Nếu description: null → KHÔNG được nói \"có mô tả quan trọng\"\n"
-                + "- Nếu dueDate: null → KHÔNG được nói \"quá hạn\" hoặc \"sắp đến hạn\"\n"
-                + "- Nếu assigneeNames: [] → CHỈ nói \"chưa có người phụ trách\"\n"
-                + "- Nếu labels: [] → KHÔNG được nói về nhãn\n"
+                + "QUY TẮC PHÂN TÍCH THÔNG MINH:\n"
+                + "- CÂN BẰNG TẢI (Workload Balancing): Hãy quan sát trường 'workloads_analysis'. Nếu một người đang làm > 5 thẻ trong khi người khác rảnh (< 2 thẻ), hãy chủ động đề xuất chuyển bớt công việc.\n"
+                + "- QUÁ HẠN: Nếu thẻ có dueDate < ngày hiện tại, hãy nhắc nhở và đề xuất giải pháp (ví dụ: gán thêm người hỗ trợ).\n"
+                + "- THẢO LUẬN: Nếu thẻ có comments, hãy tóm tắt là 'đang được thảo luận sôi nổi'.\n"
                 + "\n"
-                + "QUY TẮC KHI NHẮC ĐẾN THẺ:\n"
-                + "1. BẮT BUỘC dùng TÊN THẺ (title) thay vì ID số.\n"
-                + "2. Format: **\"Tên thẻ\"** (không được viết **46**).\n"
-                + "3. Chỉ tham chiếu thẻ có trong dữ liệu cards.\n"
-                + "4. Đưa ID vào \"references.cardIds\".\n"
+                + "QUY TẮC TRÌNH BÀY:\n"
+                + "1. Nhắc đến thẻ: dùng **\"Tên thẻ\"**. Tránh dùng ID trực tiếp trong câu văn.\n"
+                + "2. Nhắc đến List: dùng đúng tên list hiện có trong dữ liệu.\n"
+                + "3. Sử dụng Markdown để trình bày đẹp mắt (bullet points, bold).\n"
                 + "\n"
-                + "QUY TẮC KHI NHẮC ĐẾN LIST:\n"
-                + "1. CHỈ dùng tên list có trong cards.listName.\n"
-                + "2. KHÔNG bịa \"To Do\", \"In Progress\", \"Done\".\n"
-                + "3. Dùng ĐÚNG tên list (ví dụ: \"111\", \"222\").\n"
-                + "\n"
-                + "QUY TẮC KHI PHÂN TÍCH:\n"
-                + "1. Chỉ nói về thông tin CÓ TRONG dữ liệu.\n"
-                + "2. Nếu dueDate có giá trị → so sánh với ngày hiện tại để xác định quá hạn.\n"
-                + "3. Nếu comments có nội dung → đếm số lượng, KHÔNG suy luận nội dung.\n"
-                + "4. Nếu description có text → mention có mô tả, KHÔNG diễn giải.\n"
-                + "\n"
-                + "VÍ DỤ ĐÚNG (dựa trên dữ liệu thực tế):\n"
-                + "- \"Thẻ **\\\"Fix bug\\\"** đã quá hạn 2 ngày (dueDate: 2026-04-23, hôm nay: 2026-04-25)\"\n"
-                + "- \"Thẻ **\\\"Task A\\\"** chưa có người phụ trách (assigneeNames: [])\"\n"
-                + "- \"Thẻ **\\\"Task B\\\"** có 3 comments\"\n"
-                + "\n"
-                + "VÍ DỤ SAI (bịa đặt):\n"
-                + "- \"Thẻ **46** cần ưu tiên\" ❌ (dùng ID)\n"
-                + "- \"có nhiều thảo luận về lỗi\" ❌ (khi comments: [])\n"
-                + "- \"quá hạn\" ❌ (khi dueDate: null)\n"
-                + "- \"list To Do\" ❌ (khi không có list tên này)\n"
-                + "\n"
-                + "OUTPUT FORMAT:\n"
-                + "BẠN PHẢI TRẢ LỜI DƯỚI DẠNG JSON:\n"
+                + "OUTPUT FORMAT (BẮT BUỘC JSON):\n"
                 + "{\n"
-                + "  \"answer\": \"Câu trả lời dựa trên dữ liệu thực tế\",\n"
+                + "  \"answer\": \"Nội dung phản hồi chi tiết, thông minh bằng Markdown\",\n"
                 + "  \"references\": {\n"
-                + "    \"cardIds\": [123],\n"
-                + "    \"userIds\": [],\n"
-                + "    \"listNames\": [\"111\"]\n"
+                + "    \"cardIds\": [ID các thẻ được nhắc đến],\n"
+                + "    \"userIds\": [ID các user được nhắc đến],\n"
+                + "    \"listNames\": [Tên các list được nhắc đến]\n"
                 + "  }\n"
                 + "}\n"
-                + "\n"
-                + "Chỉ xuất ra JSON thuần túy, không bọc trong code block.";
+                + "Chỉ xuất ra JSON thuần túy.";
 
         Map<String, Object> promptData = new LinkedHashMap<>();
         promptData.put("boardName", boardName);
@@ -1463,6 +1446,20 @@ public class BoardAiSuggestionService {
         promptData.put("priorities", priorities);
         promptData.put("risks", risks);
         promptData.put("assignments", assignments);
+        
+        // WORKLOAD BALANCING FEATURE
+        Map<Long, Integer> workloadByUser = initializeWorkload(members, cards);
+        StringBuilder workloadContext = new StringBuilder("Tình trạng khối lượng công việc hiện tại:\n");
+        if (members != null) {
+            for (BoardMemberEntity m : members) {
+                if (m.getUser() != null) {
+                    int load = workloadByUser.getOrDefault(m.getUser().getId(), 0);
+                    workloadContext.append("- ").append(m.getUser().getFullName()).append(": đang làm ").append(load).append(" thẻ.\n");
+                }
+            }
+        }
+        promptData.put("workloads_analysis", workloadContext.toString());
+        
         promptData.put("fallbackSummary", fallbackSummary);
         promptData.put("fallbackActions", fallbackActions);
 
@@ -1684,17 +1681,30 @@ public class BoardAiSuggestionService {
             List<AiBoardSuggestionDto.PriorityItem> priorities,
             List<AiBoardSuggestionDto.RiskItem> risks,
             List<AiBoardSuggestionDto.AssignmentItem> assignments,
+            List<CardEntity> cards,
             String fallbackSummary,
             List<String> fallbackActions
     ) throws Exception {
-        String systemPrompt = "Bạn là một giám đốc dự án dày dạn kinh nghiệm và là trợ lý phân tích board thông minh. "
-                + "Bạn phải trả lời bằng tiếng Việt. "
-                + "Tất cả các phân tích của bạn phải dựa trên dữ liệu board thực tế được cung cấp. "
-                + "Mục tiêu của bạn là tạo ra một bản tóm tắt sức khỏe của board thật thông minh, ngắn gọn và 3 bước hành động cụ thể. "
-                + "Hãy phân tích dữ liệu một cách phản biện: xác định các điểm nghẽn lớn nhất, nêu bật sự mất cân bằng khối lượng công việc, gắn cờ các thẻ quá hạn hoặc chưa được phân công. "
-                + "Sử dụng mô tả thẻ, bình luận, nhãn và danh sách kiểm tra (checklist) để hiểu sâu ngữ cảnh. Đừng chỉ lặp lại dữ liệu, hãy đưa ra nhận định tại sao một thẻ lại quan trọng hoặc đang bị kẹt. "
-                + "Trả về DUY NHẤT mã JSON với đúng hai khóa: \"summary\" (chuỗi tóm tắt, tối đa 300 ký tự) và \"nextActions\" (mảng đúng 3 chuỗi hành động ngắn gọn, mỗi chuỗi tối đa 120 ký tự). "
-                + "Chỉ xuất ra mã JSON thuần túy, không bọc trong dấu code block.";
+        String systemPrompt = "Bạn là Scrum Master hỗ trợ quản lý Board dự án qua AI. "
+                + "Hãy phân tích dữ liệu JSON (cards, priorities, risks, workloads) và đưa ra tóm tắt thông minh, chuyên nghiệp bằng tiếng Việt. "
+                + "\n\n"
+                + "NHIỆM VỤ CỦA BẠN:\n"
+                + "1. Tóm tắt tình hình dự án hiện tại (số lượng thẻ, tình trạng hoàn thành).\n"
+                + "2. Cảnh báo các rủi ro (thẻ quá hạn, thẻ chưa có người làm).\n"
+                + "3. Phân tích khối lượng công việc (Workload): Dựa vào 'workloads_analysis', hãy chỉ ra ai đang quá tải (ví dụ làm > 5 thẻ) và đề xuất giải pháp cân bằng.\n"
+                + "4. Đề xuất các hành động tiếp theo cụ thể.\n"
+                + "\n"
+                + "QUY TẮC:\n"
+                + "- Trình bày bằng Markdown.\n"
+                + "- Bám sát dữ liệu thật.\n"
+                + "- Phản hồi phải thực sự hữu ích, không sáo rỗng.\n"
+                + "\n"
+                + "OUTPUT FORMAT (BẮT BUỘC JSON):\n"
+                + "{\n"
+                + "  \"summary\": \"Nội dung tóm tắt thông minh bằng Markdown\",\n"
+                + "  \"nextActions\": [\"Hành động 1\", \"Hành động 2\", \"Hành động 3\"]\n"
+                + "}\n"
+                + "Chỉ xuất ra JSON thuần túy.";
 
         Map<String, Object> promptData = new LinkedHashMap<>();
         promptData.put("boardName", boardName);
@@ -1708,10 +1718,24 @@ public class BoardAiSuggestionService {
         promptData.put("priorities", priorities);
         promptData.put("risks", risks);
         promptData.put("assignments", assignments);
+
+        // WORKLOAD BALANCING FEATURE
+        Map<Long, Integer> workloadByUser = initializeWorkload(members, cards);
+        StringBuilder workloadContext = new StringBuilder("Tình trạng khối lượng công việc hiện tại:\n");
+        if (members != null) {
+            for (BoardMemberEntity m : members) {
+                if (m.getUser() != null) {
+                    int load = workloadByUser.getOrDefault(m.getUser().getId(), 0);
+                    workloadContext.append("- ").append(m.getUser().getFullName()).append(": đang làm ").append(load).append(" thẻ.\n");
+                }
+            }
+        }
+        promptData.put("workloads_analysis", workloadContext.toString());
+
         promptData.put("ruleBasedSummary", fallbackSummary);
         promptData.put("ruleBasedActions", fallbackActions);
 
-        String userPrompt = "Analyze this board data and produce a smarter, more insightful summary and 3 actionable next steps in Vietnamese. "
+        String userPrompt = "Analyze this board data and produce a smarter, more insightful summary and actionable next steps in Vietnamese. "
                 + "Focus on the most critical issues (overdue cards, unassigned high-priority items, workload imbalance). "
                 + "Be specific — mention card titles and member names from the data. "
                 + "Data: " + objectMapper.writeValueAsString(promptData);
@@ -2098,7 +2122,7 @@ public class BoardAiSuggestionService {
 
                 // Find list
                 Long laneId = null;
-                List<vn.nguyenlong.taskmanager.scrumboard.entity.ListEntity> lists = listRepository.findByBoardIdOrderByCreatedAt(boardId);
+                List<vn.nguyenlong.taskmanager.scrumboard.entity.ListEntity> lists = listRepository.findByBoardIdOrderByScrumFlow(boardId);
                 if (lists.isEmpty()) {
                     result.setResultMessage("Board chưa có danh sách nào để tạo thẻ");
                     return result;

@@ -23,14 +23,27 @@ public interface ListRepository extends JpaRepository<ListEntity, Long> {
            "WHERE l.id = :id")
     Optional<ListEntity> findByIdWithDetails(@Param("id") Long id);
 
-    List<ListEntity> findByBoardIdOrderByCreatedAt(Long boardId);
+    @Query("SELECT l FROM ListEntity l WHERE l.board.id = :boardId " +
+           "ORDER BY (CASE WHEN l.statusType = 'TODO' THEN 1 " +
+           "               WHEN l.statusType = 'IN_PROGRESS' THEN 2 " +
+           "               WHEN l.statusType = 'DONE' THEN 3 " +
+           "               ELSE 4 END), l.createdAt")
+    List<ListEntity> findByBoardIdOrderByScrumFlow(@Param("boardId") Long boardId);
 
     @Query("SELECT l FROM ListEntity l LEFT JOIN FETCH l.cards c " +
-           "WHERE l.board.id = :boardId ORDER BY l.createdAt")
+           "WHERE l.board.id = :boardId " +
+           "ORDER BY (CASE WHEN l.statusType = 'TODO' THEN 1 " +
+           "               WHEN l.statusType = 'IN_PROGRESS' THEN 2 " +
+           "               WHEN l.statusType = 'DONE' THEN 3 " +
+           "               ELSE 4 END), l.createdAt")
     List<ListEntity> findByBoardIdWithCards(@Param("boardId") Long boardId);
     
     @Query("SELECT l FROM ListEntity l LEFT JOIN FETCH l.cards " +
-           "WHERE l.id IN :listIds ORDER BY l.createdAt")
+           "WHERE l.id IN :listIds " +
+           "ORDER BY (CASE WHEN l.statusType = 'TODO' THEN 1 " +
+           "               WHEN l.statusType = 'IN_PROGRESS' THEN 2 " +
+           "               WHEN l.statusType = 'DONE' THEN 3 " +
+           "               ELSE 4 END), l.createdAt")
     List<ListEntity> findByIdsWithCards(@Param("listIds") List<Long> listIds);
 
     boolean existsByNameAndBoardId(String name, Long boardId);
